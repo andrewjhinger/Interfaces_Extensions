@@ -5,7 +5,7 @@ MVC web application
 
 ###Concepts used:
 
-MVC, Interfaces, Extensions
+MVC, Linq, Interfaces, and HTML Extensions
 
 ###Functionality:
 
