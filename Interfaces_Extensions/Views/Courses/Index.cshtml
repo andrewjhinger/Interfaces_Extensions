@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Interfaces_Extensions.Models.Courses>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div class="error">
+    @if (!String.IsNullOrEmpty(ViewBag.Error))
+    {
+        @ViewBag.Error
+    }
+</div>
+<div>
+    @using (Html.BeginForm("LooseQuery", "Courses", FormMethod.Post))
+    {
+        @Html.TextBox("queryString", null, new { placeholder = "Enter Course Search" })
+        <input type="submit" value="Search" />
+    }
+</div>
+
+<div>
+    @using (Html.BeginForm("GetRange", "Courses", FormMethod.Post))
+    {
+        <text><b>Search by course range: </b></text>@Html.TextBox("val_1", null, new { @style = "width:30px;" })<text> <b>TO</b> 
+        </text>@Html.TextBox("val_2", null, new { @style = "width:30px;" })
+        <input type="submit" value="Search Courses" />
+    }
+</div>
+
+<p>
+    @Html.ActionLink("Return to Index", "Index")
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Credits)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Credits)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

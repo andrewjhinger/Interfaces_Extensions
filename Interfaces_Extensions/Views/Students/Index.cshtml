@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Interfaces_Extensions.Models.Students>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @using (Html.BeginForm("Filters", "Students", FormMethod.Post))
+    {
+    @Html.TextBox("filterParams", null, new{ placeholder = "Enter filter terms" })
+        <input type="submit" value="Filter!" />
+    }
+    @using (Html.BeginForm("OrderByName", "Students", FormMethod.Post))
+    {
+        <div>
+            Sort by student First Names <select name="letter">
+            @for (char c = 'A'; c <= 'Z'; c++ )
+            {
+                <option>@c</option>
+            }
+            </select>
+            <input type="submit" value="Sort" />
+        </div>
+    }
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameForExtension(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+        </td>
+    </tr>
+}
+
+</table>
